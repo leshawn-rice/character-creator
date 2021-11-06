@@ -1,0 +1,190 @@
+1 = {
+    # Character Attributes
+
+    name = "Bane"
+    dynasty = 1
+    religion = "catholic"
+    culture = "english"
+    father = 0
+    mother = 0
+
+    # Character history
+
+    0001.01.01 = {
+        birth = yes
+    }
+    0081.01.01{
+        death = yes
+    }
+},
+2 = {
+    # Character Attributes
+
+    name = "John"
+    dynasty = 1
+    religion = "catholic"
+    culture = "english"
+    father = 1
+    mother = 1
+
+    # Character history
+
+    0001.01.01 = {
+        birth = yes
+    }
+    0081.01.01{
+        death = yes
+    }
+},
+3 = {
+    # Character Attributes
+
+    name = "Ahmed"
+    dynasty = 1
+    religion = "catholic"
+    culture = "english"
+    father = 2
+    mother = 2
+
+    # Character history
+
+    0001.01.01 = {
+        birth = yes
+    }
+    0081.01.01{
+        death = yes
+    }
+},
+4 = {
+    # Character Attributes
+
+    name = "Bane"
+    dynasty = 1
+    religion = "catholic"
+    culture = "english"
+    father = 3
+    mother = 3
+
+    # Character history
+
+    0001.01.01 = {
+        birth = yes
+    }
+    0081.01.01{
+        death = yes
+    }
+},
+5 = {
+    # Character Attributes
+
+    name = "Ahmed"
+    dynasty = 1
+    religion = "catholic"
+    culture = "english"
+    father = 4
+    mother = 4
+
+    # Character history
+
+    0001.01.01 = {
+        birth = yes
+    }
+    0081.01.01{
+        death = yes
+    }
+},
+6 = {
+    # Character Attributes
+
+    name = "Mack"
+    dynasty = 1
+    religion = "catholic"
+    culture = "english"
+    father = 5
+    mother = 5
+
+    # Character history
+
+    0001.01.01 = {
+        birth = yes
+    }
+    0081.01.01{
+        death = yes
+    }
+},
+7 = {
+    # Character Attributes
+
+    name = "Billy"
+    dynasty = 1
+    religion = "catholic"
+    culture = "english"
+    father = 6
+    mother = 6
+
+    # Character history
+
+    0001.01.01 = {
+        birth = yes
+    }
+    0081.01.01{
+        death = yes
+    }
+},
+8 = {
+    # Character Attributes
+
+    name = "Leshawn"
+    dynasty = 1
+    religion = "catholic"
+    culture = "english"
+    father = 7
+    mother = 7
+
+    # Character history
+
+    0001.01.01 = {
+        birth = yes
+    }
+    0081.01.01{
+        death = yes
+    }
+},
+9 = {
+    # Character Attributes
+
+    name = "Bane"
+    dynasty = 1
+    religion = "catholic"
+    culture = "english"
+    father = 8
+    mother = 8
+
+    # Character history
+
+    0001.01.01 = {
+        birth = yes
+    }
+    0081.01.01{
+        death = yes
+    }
+},
+10 = {
+    # Character Attributes
+
+    name = "Mack"
+    dynasty = 1
+    religion = "catholic"
+    culture = "english"
+    father = 9
+    mother = 9
+
+    # Character history
+
+    0001.01.01 = {
+        birth = yes
+    }
+    0081.01.01{
+        death = yes
+    }
+},

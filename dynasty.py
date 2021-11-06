@@ -12,37 +12,17 @@ class Dynasty():
 
     def write(self, file=None):
         file.write(
-            f"{self.id} = {{\n    name = \"{self.name}\"\n    culture = {self.culture}\n}}"
+            f"{self.id} = {{\n    name = \"{self.name}\"\n    culture = \"{self.culture}\"\n}}"
         )
 
     def __eq__(self, dynasty):
-        if not dynasty:
-            return False
-        if not isinstance(dynasty, Dynasty):
-            return False
-        if dynasty.id != self.id or dynasty.name != self.name or dynasty.culture != self.culture:
-            return False
-        return True
+        return self.id == dynasty.id
 
     def __lt__(self, dynasty):
-        if not dynasty or not isinstance(dynasty, Dynasty):
-            raise TypeError(
-                "'<' not supported between instances of 'Dynasty' and '{}'".format(
-                    type(dynasty))
-            )
-        if self.id < dynasty.id:
-            return True
-        return False
+        return self.id < dynasty.id
 
     def __gt__(self, dynasty):
-        if not dynasty or not isinstance(dynasty, Dynasty):
-            raise TypeError(
-                "'<' not supported between instances of 'Dynasty' and '{}'".format(
-                    type(dynasty))
-            )
-        if self.id > dynasty.id:
-            return True
-        return False
+        return self.id > dynasty.id
 
     def __repr__(self):
         return f"<Dynasty #{self.id} {self.name}>"

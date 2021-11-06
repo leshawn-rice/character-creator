@@ -45,12 +45,34 @@ def initialize(names: list = [], initial_id: int = 1):
     }
 
 
+def write_characters(characters: set = {}):
+    outfile = open("characters.txt", "a")
+    chars_to_write = [character for character in characters]
+    chars_to_write.sort()
+    for character in chars_to_write:
+        character.write(file=outfile)
+
+
+def generate_characters(names: list = [], characters: set = {}, last_id: int = 10):
+    characters_copy = characters.copy()
+    initial_character = characters_copy.pop()
+
+    for i in range(initial_character.id + 1, last_id + 1):
+        character = create_character(names=names, characters=characters, dynasty=initial_character.dynasty,
+                                     religion=initial_character.religion, culture=initial_character.culture, id=i, father_id=i - 1, mother_id=i - 1)
+        characters.add(character)
+
+    return characters
+
+
 def main():
     names = []
     with open("names.txt", "r") as names_file:
         names = [name.strip() for name in names_file.readlines()]
     initial_dict = initialize(names=names)
-    print(initial_dict)
+    characters = initial_dict.get('characters')
+    generate_characters(names=names, characters=characters)
+    write_characters(characters)
 
 
 if __name__ == '__main__':

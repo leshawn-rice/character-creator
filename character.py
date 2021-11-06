@@ -41,8 +41,17 @@ class Character():
 
     def write(self, file=None):
         file.write(
-            f"{self.id} = {{\n    # Character Attributes\n\n    name = \"{self.name}\"\n    dynasty = {self.dynasty.id}\n    religion = {self.religion}\n    culture = {self.culture}\n    father = {self.father_id}\n    mother = {self.mother_id}\n\n    # Character history\n\n    {self.birth_date} = {{\n        birth = yes\n    }}\n    {self.death_date}{{\n        death = yes\n    }}\n}}"
+            f"{self.id} = {{\n    # Character Attributes\n\n    name = \"{self.name}\"\n    dynasty = {self.dynasty.id}\n    religion = \"{self.religion}\"\n    culture = \"{self.culture}\"\n    father = {self.father_id}\n    mother = {self.mother_id}\n\n    # Character history\n\n    {self.birth_date} = {{\n        birth = yes\n    }}\n    {self.death_date}{{\n        death = yes\n    }}\n}},\n"
         )
+
+    def __eq__(self, character):
+        return self.id == character.id
+
+    def __lt__(self, character):
+        return self.id < character.id
+
+    def __gt__(self, character):
+        return self.id > character.id
 
     def __repr__(self):
         return f"<Character #{self.id} {self.name}>"
