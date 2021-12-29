@@ -1,0 +1,12 @@
+Definitely Need:
+
+Toggle whether son can share name with father.
+Siblings cannot share names.
+Implement birthing.
+Start at a number given with input (or passed as command line argument)
+Random (low) chance of character starting a new dynasty
+
+Possibly Need:
+
+Random (low) chance of character starting/changing culture?
+
