@@ -5,6 +5,18 @@ Siblings cannot share names.
 Implement birthing.
 Start at a number given with input (or passed as command line argument)
 Random (low) chance of character starting a new dynasty
+Implement whether a batch has the trait "sayyid"
+Implement culture-based dynasty name schemes (Founder-id, von Location, de Location, etc)
+Account for slightly different code block structures between Crusader Kings II and Crusader Kings III (CK2 Dynasty Name: name = "de Valencia", CK3 Dynasty Name: prefix = "dynn_de" \n name = "dynn_Valencia") for the "de Valencia" dynasty. The CK3 version needs localisation.
+CK3 introduces Houses; branches of an overarching dynasty. Each dynasty needs a main House, and cadet branches/minor Houses if applicable (a character starts his own House.) These belong in a separate file of the dynasties files, and have the following structure:
+
+#house_af_gorm = {
+#	prefix = "dynnp_af"
+#	name = "dynn_Gorm"
+#	dynasty = 490 #(af Sigurdr)
+#}
+
+This is House af Gorm, a branch House of the af Sigurdr dynasty. This does not apply in CK2.
 
 Possibly Need:
 
