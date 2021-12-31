@@ -20,24 +20,19 @@ class Character():
                 return character
 
     def is_sibling(self, character):
-        if self.father_id == character.father_id or self.mother_id == character.mother_id:
-            return True
-        return False
+        return self.father_id == character.father_id or self.mother_id == character.mother_id
 
     def shares_father(self, character):
-        if self.father_id == character.father_id:
-            return True
-        return False
+        return self.father_id == character.father_id
 
     def shares_mother(self, character):
-        if self.mother_id == character.mother_id:
-            return True
-        return False
+        return self.mother_id == character.mother_id
 
     def shares_name(self, character):
-        if self.name == character.name:
-            return True
-        return False
+        return self.name == character.name
+
+    def is_parent(self, character):
+        return self.id == character.father_id or self.id == character.mother_id
 
     def write(self, file=None):
         file.write(
