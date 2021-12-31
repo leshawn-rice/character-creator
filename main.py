@@ -2,8 +2,13 @@ import random
 from character import Character
 from dynasty import Dynasty
 
-DYNASTY_NAMES = ['RoughRiders', 'HungrySquirrels',
-                 'CowardlyPythons', 'LuckyFrogs', 'TerrifyingBubbles']
+DYNASTY_NAMES = [
+    'RoughRiders',
+    'HungrySquirrels',
+    'CowardlyPythons',
+    'LuckyFrogs',
+    'TerrifyingBubbles'
+]
 
 
 def create_dynasty(dynasties: set = {}, id: int = 1, culture: str = 'english'):
