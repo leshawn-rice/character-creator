@@ -20,5 +20,5 @@ This is House af Gorm, a branch House of the af Sigurdr dynasty. This does not a
 
 Possibly Need:
 
-Random (low) chance of character starting/changing culture?
+Random (low) chance of character starting/changing culture? <- There's no need for this unless you want to program a chance of parent cultures splitting into their child cultures (Norse into Swedish/Danish/Norwegian). I don't think it's necessary.
 
