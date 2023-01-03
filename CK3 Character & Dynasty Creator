@@ -63,11 +63,11 @@ def generate_dynasty(character, name_bank, dynasty_id, generation_count=3, max_c
         for parent in dynasty:
             male_names, female_names = name_bank  # Unpack the name bank into male and female name lists
             birth_year_lower_bound = parent['birth_year'] + 16  # The earliest a child can be born is 16 years after the parent's birth year
-            birth_year_upper_bound = parent['death_year'] - 16  # The latest a child can be born is 16 years before the parent's death year
+            birth_year_upper_bound = min(parent['birth_year'] + 40, parent['death_year'] - 1)  # The latest a child can be born is 40 years after the parent's birth year, or the year before the parent's death
             if birth_year_upper_bound > birth_year_lower_bound:  # If the parent can have children
                 num_children = random.randint(0, max_children)  # Choose a random number of children between 0 and max_children
                 for i in range(num_children):
-                    gender = random.choice(['male', 'female'])  # Choose a random gender for the child
+                    gender = random.choices(['male', 'female'], weights = [0.65, 0.35])  # Choose a random gender for the child
                     if gender == 'male':
                         name_list = male_names
                     else:
