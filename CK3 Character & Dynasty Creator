@@ -1,0 +1,85 @@
+import random
+
+def create_character(ID, name, dynasty, religion, culture, gender='male', father=None, mother=None, birth_date=None):
+    birth_year = int(birth_date.split('.')[0])  # Extract the birth year from the birth date string
+    birth_month = int(birth_date.split('.')[1])  # Extract the birth month from the birth date string
+    birth_day = int(birth_date.split('.')[2])  # Extract the birth day from the birth date string
+    death_year = random.randint(birth_year + 25, birth_year + 70)  # Choose a random death year between 25 and 70 years after the birth year
+    death_month = random.randint(birth_month, 13)  # Choose a random death month between the birth month and 13 (13 is used to allow for the possibility of death in the following year)
+    if death_month > 12:  # If the death month is greater than 12, it is subtracted by 12 to get the equivalent month in the following year
+        death_month -= 12
+    death_day = random.randint(1, 29)  # Choose a random death day between 1 and 28
+    death_date = f'{death_year}.{death_month}.{death_day}'  # Format the death date string
+
+    character = {
+        'name': name,
+        'dynasty': dynasty,
+        'religion': religion,
+        'culture': culture,
+        'birth_date': birth_date,
+        'death_date': death_date
+    }
+    if gender == 'female':
+        character['female'] = 'yes'  # Set the gender to female if specified
+    if father:
+        character['father'] = father
+    if mother:
+        character['mother'] = mother
+    return f'{ID} = {{\n{format_character_dict(character, 2)}}}\n'
+
+
+def format_character_dict(d, indent=0):
+  result = ''
+  for key, value in d.items():
+    if isinstance(value, dict):
+      result += ' ' * indent + f'{key} = {{\n{format_character_dict(value, indent + 2)}}}\n'
+    elif isinstance(value, list):
+      result += ' ' * indent + f'{key} = {{\n'
+      for item in value:
+        result += ' ' * (indent + 2) + f'{item}\n'
+      result += ' ' * indent + '}\n'
+    else:
+      if key == 'name':
+        value = f'"{value}"'  # Enclose the name in quotation marks
+      result += ' ' * indent + f'{key} = {value}\n'
+  return result
+
+
+def generate_dynasty(character, name_bank, dynasty_id, generation_count=3, max_children=5, sayyid=False, coc_chance=0.24):
+    """
+    Generates a dynasty of characters descended from the given character.
+    :param character: The character to use as the dynasty founder.
+    :param name_bank: A tuple containing two lists, the first being a list of male names and the second being a list of female names.
+    :param dynasty_id: The ID of the dynasty.
+    :param generation_count: The number of generations to generate, between 3 and 5 inclusive.
+    :param max_children: The maximum number of children a character can have, between 0 and 5 inclusive.
+    :param sayyid: If True, all characters in the dynasty will have the "sayyid" trait.
+    :param coc_chance: The chance (between 0 and 1) that a character will have the "child_of_concubine_female" trait.
+    :return: A list of character blocks.
+    """
+    dynasty = [character]  # Start the dynasty with the given character as the founder
+
+    for generation in range(generation_count):
+        new_generation = []  # This will be a list of characters in the current generation
+        for parent in dynasty:
+            male_names, female_names = name_bank  # Unpack the name bank into male and female name lists
+            birth_year_lower_bound = parent['birth_year'] + 16  # The earliest a child can be born is 16 years after their parent's birth
+            birth_year_upper_bound = min(parent['birth_year'] + 40, parent['death_year'])  # The latest a child can be born is 40 years after their parent's birth, or their parent's death, whichever comes first
+            years_since_last_child = 2  # The minimum number of years between children
+            children = []  # This will be a list of children for the current parent
+            while True:
+                # Determine the birth year of the child based on the bounds and the number of years since the last child
+                birth_year = random.randint(max(birth_year_lower_bound, parent['birth_year'] + years_since_last_child), birth_year_upper_bound)
+                years_since_last_child = birth_year - parent['birth_year']  # Update the number of years since the last child
+                if years_since_last_child > 40:  # If the parent is too old to have more children, break the loop
+                    break
+                # Determine the birth month and day of the child
+                birth_month = random.randint(1, 12)
+                birth_day = random.randint(1, 28)
+                # Determine the death year, month, and day of the child
+                death_year = random.randint(birth_year + 25, min(birth_year + 70, parent['death_year']))
+                death_month = random.randint(1, 12)
+                death_day = random.randint(1, 28)
+                # Choose a name for the child based on their gender
+                gender = 'male' if random.random() < 0.65 else 'female'
+                if gender
