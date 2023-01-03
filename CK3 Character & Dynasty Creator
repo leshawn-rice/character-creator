@@ -44,7 +44,6 @@ def format_character_dict(d, indent=0):
       result += ' ' * indent + f'{key} = {value}\n'
   return result
 
-
 def generate_dynasty(character, name_bank, dynasty_id, generation_count=3, max_children=5, sayyid=False, coc_chance=0.24):
     """
     Generates a dynasty of characters descended from the given character.
@@ -63,23 +62,21 @@ def generate_dynasty(character, name_bank, dynasty_id, generation_count=3, max_c
         new_generation = []  # This will be a list of characters in the current generation
         for parent in dynasty:
             male_names, female_names = name_bank  # Unpack the name bank into male and female name lists
-            birth_year_lower_bound = parent['birth_year'] + 16  # The earliest a child can be born is 16 years after their parent's birth
-            birth_year_upper_bound = min(parent['birth_year'] + 40, parent['death_year'])  # The latest a child can be born is 40 years after their parent's birth, or their parent's death, whichever comes first
-            years_since_last_child = 2  # The minimum number of years between children
-            children = []  # This will be a list of children for the current parent
-            while True:
-                # Determine the birth year of the child based on the bounds and the number of years since the last child
-                birth_year = random.randint(max(birth_year_lower_bound, parent['birth_year'] + years_since_last_child), birth_year_upper_bound)
-                years_since_last_child = birth_year - parent['birth_year']  # Update the number of years since the last child
-                if years_since_last_child > 40:  # If the parent is too old to have more children, break the loop
-                    break
-                # Determine the birth month and day of the child
-                birth_month = random.randint(1, 12)
-                birth_day = random.randint(1, 28)
-                # Determine the death year, month, and day of the child
-                death_year = random.randint(birth_year + 25, min(birth_year + 70, parent['death_year']))
-                death_month = random.randint(1, 12)
-                death_day = random.randint(1, 28)
-                # Choose a name for the child based on their gender
-                gender = 'male' if random.random() < 0.65 else 'female'
-                if gender
+            birth_year_lower_bound = parent['birth_year'] + 16  # The earliest a child can be born is 16 years after the parent's birth year
+            birth_year_upper_bound = parent['death_year'] - 16  # The latest a child can be born is 16 years before the parent's death year
+            if birth_year_upper_bound > birth_year_lower_bound:  # If the parent can have children
+                num_children = random.randint(0, max_children)  # Choose a random number of children between 0 and max_children
+                for i in range(num_children):
+                    gender = random.choice(['male', 'female'])  # Choose a random gender for the child
+                    if gender == 'male':
+                        name_list = male_names
+                    else:
+                        name_list = female_names
+                    name = random.choice(name_list)  # Choose a random name from the appropriate name list
+                    birth_year = random.randint(birth_year_lower_bound, birth_year_upper_bound)  # Choose a random birth year between the lower and upper bounds
+                    birth_month = random.randint(1, 13)  # Choose a random birth month between 1 and 13
+                    if birth_month > 12:  # If the birth month is greater than 12, it is subtracted by 12 to get the equivalent month in the following year
+                        birth_month -= 12
+                    birth_day = random.randint(1, 29)  # Choose a random birth day between 1 and 28
+                    birth_date = f'{birth_year}.{birth_month}.{birth_day}'  # Format the birth date string
+                    child_id = f'{dynasty_id}_{generation+1}_{i+1}'  # Generate an ID for the
